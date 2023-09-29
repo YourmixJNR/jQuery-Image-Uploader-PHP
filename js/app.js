@@ -16,6 +16,19 @@ $(document).ready(function(){
             }
         },
 
+        uploadStarted: function(i, file,len){
+            createImage(file);
+        },
+        
+        progressUpdated: function(i, file, progress){
+            $.data(file).find('.progress').width(progress);
+        },
+
+        uploadFinished: function(i,file,response){
+            $.data(file).addClass('done');
+            $('.uploaded').show();
+        },
+
         error: function(err, file){
             switch(err){
                 case 'BrowserNotSupported':
@@ -32,5 +45,40 @@ $(document).ready(function(){
             }
         },
 
-    })
-})
+    });
+
+    var template = '<div class="preview">'+
+							'<span class="imageHolder">'+
+								'<span class="uploaded"></span>'+
+								'<img />'+
+							'</span>'+
+							'<div class="progressHolder">'+
+								'<div class="progress"></div>'+
+							'</div>'+
+						'</div>';	
+		
+		function createImage(file){
+			var preview = $(template),
+				image = $('img',preview);
+				
+			var reader = new FileReader();
+			
+			image.width = 100;
+			image.height = 100;
+			
+			reader.onload = function(e){
+				image.attr('src',e.target.result);
+			};
+			
+			reader.readAsDataURL(file);
+			
+			back.hide();
+			preview.appendTo(picbox);
+			
+			$.data(file,preview);
+		}
+		
+		function showMessage(msg){
+			back.html(msg);
+		}
+});
