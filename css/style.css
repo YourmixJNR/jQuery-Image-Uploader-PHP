@@ -35,3 +35,18 @@ header {
 header h1 {
     font-size: 1.5rem;
 }
+
+#picbox {
+    width: 650px;
+	margin: 50px auto;
+	min-height: 500px;
+    border: #303030 dotted 1px;
+	overflow :auto;
+}
+
+#picbox .back {
+	text-align: center;
+	padding-top: 100px;
+	display: block;
+	opacity: 0.4;
+}
