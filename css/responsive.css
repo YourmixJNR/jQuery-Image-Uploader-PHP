@@ -1,0 +1,16 @@
+@media (max-width: 600px) {
+    #picbox {
+        width: 400px;
+    }
+
+    #picbox .back img {
+        width: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    #picbox {
+        width: 300px;
+    }
+}
