@@ -1,12 +1,20 @@
 $(document).ready(function(){
-    var picbox = $('#picbox');
+    var picbox = $('#picbox'),
+		back = $('.back', picbox);
 
-    back = $('.bask', picbox)
 
     picbox.filedrop({
         paramname: 'pic',
         maxfilesize: 2,
         maxfiles: 6,
+        url: 'upload.php',
+
+        beforeEach: function(file){
+            if(!file.type.match(/^image\//)){
+                alert('Your file is not an image');
+                return false;
+            }
+        },
 
         error: function(err, file){
             switch(err){
@@ -24,12 +32,5 @@ $(document).ready(function(){
             }
         },
 
-        beforeEach: function(file){
-            if(!file.type.match(/^image\//)){
-                alert('Your file is not an image');
-                return false;
-            }
-        },
-
-    });
-});
+    })
+})
